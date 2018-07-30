@@ -1,0 +1,34 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\usetikzlibrary{arrows,positioning,automata,shadows,fit,shapes}
+\begin{document}
+    \begin{tikzpicture}[
+            > = stealth, % arrow head style
+            shorten > = 1pt, % don't touch arrow head to node
+            auto,
+            node distance = 2cm, % distance between nodes
+            semithick % line style
+        ]
+
+        \tikzstyle{every state}=[
+            draw = black,
+            thick,
+            fill = white,
+            minimum size = 4mm
+        ]
+
+        \node[color=blue,state] (s) {$\alpha$};
+        \node[color=blue,state] (v1) [above right of=s] {$v_1$};
+        \node[state] (v2) [right of=s] {$v_2$};
+        \node[state] (v3) [below right of=s] {$v_3$};
+        \node[color=blue,state] (t) [right of=v2] {$\omega$};
+
+        \draw[->] (s) -- (v1);
+        \draw[->] (s) -- (v2);
+        \draw[->] (s) -- (v3);
+        \draw[->] (v2) -- (v1);
+        \draw[->] (v3) -- (v2);
+        \draw[->] (v1) -- (t);
+
+    \end{tikzpicture}
+\end{document}

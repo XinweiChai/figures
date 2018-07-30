@@ -1,0 +1,42 @@
+\documentclass{standalone}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[noend]{algpseudocode}
+\usepackage{subfigure}
+\usepackage{graphicx}
+\usepackage{pgfplots}
+\usetikzlibrary{arrows, automata,calc}
+\usetikzlibrary{er,positioning}
+\tikzstyle{block} = [rectangle, draw, fill=blue!20, 
+    text width=6em, text centered, rounded corners, minimum height=4em]
+\tikzstyle{line} = [draw, -latex']
+\input{macros}
+\input{macros-ph}
+\input{macros-abstr}
+\input{tikzstyles2}
+\begin{document}
+\begin{tikzpicture}
+\TSort{(0,0)}{a}{2}{l}
+\TSort{(2,0)}{b}{2}{l}
+\TSort{(4,0)}{c}{2}{l}
+\TSort{(6,0)}{d}{2}{l}
+\TSort{(8,0)}{e}{2}{l}
+
+% with delays
+\path[local transitions]
+
+	(d_0) edge node[auto] {$\{b_1$\}} (d_1)
+    (a_0) edge[bend left] node[auto] {$\{b_1,c_1\}$} (a_1)
+    (a_0) edge[bend right] node[right] {$\{e_1$\}} (a_1)
+    (b_0) edge[bend left] node[auto] {$\{d_0\}$} (b_1)
+	(c_0) edge node[auto] {$\{d_1\}$} (c_1)
+%	(d_0) edge node[auto] {$b_1$} (d_1)
+	%(c_1) edge node[auto] {$\{b_0\}$, $2$} (c_0)
+	%(c_0) edge node[auto] {$d_1$} (c_1)
+;
+
+\TState{a_0, b_0, c_0, d_0,e_0}
+
+
+\end{tikzpicture}
+\end{document}
